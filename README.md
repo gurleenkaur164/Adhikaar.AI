@@ -1,4 +1,4 @@
-# Adhikar.AI — An Agentic Copilot for Government Scheme Extraction
+# Adhikar.AI - An Agentic Copilot for Government Scheme Extraction
 
 > **Theme:** Build for Bharat & Agentic AI · **Target impact:** Empowering CSC operators in rural India
 > By Gurleen Kaur, Thapar Institute of Engineering & Technology.
