@@ -13,19 +13,19 @@ welfare scheme the citizen is entitled to, and generates a **localized document 
 
 ## The problem
 
-- India runs **5.5 lakh+ CSCs** — the primary digital bridge for rural citizens.
+- India runs **5.5 lakh+ CSCs** - the primary digital bridge for rural citizens.
 - There are **1,000+ Central & State welfare schemes**, each with strict eligibility rules.
-- **Scheme complexity** → citizens miss out; allocated welfare funds go under-utilised.
-- **Operator bottlenecks** → CSC Village-Level Entrepreneurs (VLEs) drown in manual paperwork.
-- **Last-mile drop-off** → even when a scheme is found, citizens abandon it for want of the
+- **Scheme complexity** - citizens miss out; allocated welfare funds go under-utilised.
+- **Operator bottlenecks** - CSC Village-Level Entrepreneurs (VLEs) drown in manual paperwork.
+- **Last-mile drop-off** - even when a scheme is found, citizens abandon it for want of the
   right prerequisite documents.
 
 ## The solution
 
 | Feature | What it does |
 |---|---|
-| **Conversational Data Entry** | Free text (any language) → clean structured citizen profile |
-| **Instant Scheme Matching** | Profile checked against a **deterministic** rule base → policy-compliant matches |
+| **Conversational Data Entry** | Free text (any language) - clean structured citizen profile |
+| **Instant Scheme Matching** | Profile checked against a **deterministic** rule base - policy-compliant matches |
 | **Smart Document Checklists** | Consolidated, de-duplicated checklist localized to Hindi / Punjabi |
 | **Assisted Application Prep** | Operator-ready summary dashboard + saved application record |
 | **Zero-Cost Scale** | Free-tier architecture, human-in-the-loop, runs with **no API key** |
@@ -38,16 +38,7 @@ The pitch's CrewAI-style workflow is implemented as an explicit, **auditable** p
 (`app/agents/orchestrator.py`). Each stage is a pure function over the previous stage's output,
 so every decision is traceable — essential for a government service.
 
-```
-Operator text
-     │
-     ▼
-┌──────────┐   ┌──────────────┐   ┌───────────────┐   ┌──────────────┐   ┌───────────┐
-│  Intake  │──▶│  Extraction  │──▶│  Eligibility  │──▶│  Checklist   │──▶│ Synthesis │
-│          │   │ (Llama 3 /   │   │ (deterministic│   │ (localized   │   │ (operator │
-│          │   │  rule-based) │   │  rule engine) │   │  docs)       │   │  summary) │
-└──────────┘   └──────────────┘   └───────────────┘   └──────────────┘   └───────────┘
-```
+
 
 **Why AI extraction is separated from a deterministic matcher:** the LLM handles the messy,
 multilingual *understanding* of the input, but eligibility is decided by a transparent rule
@@ -69,35 +60,7 @@ pension scheme.)
 
 ---
 
-## Quick start
 
-### 1. Backend (FastAPI)
-
-```bash
-cd backend
-python -m venv .venv
-# Windows:  .venv\Scripts\activate     |  macOS/Linux:  source .venv/bin/activate
-pip install -r requirements.txt
-
-cp .env.example .env        # optional — works out of the box with no key
-uvicorn app.main:app --reload --port 8000
-```
-
-- Runs at `http://127.0.0.1:8000` · interactive API at `/docs` · health at `/health`.
-- **No Groq key?** It automatically uses the rule-based extractor — the whole app still works.
-- **With a key:** get a free one at <https://console.groq.com>, set `GROQ_API_KEY` in `.env`.
-
-### 2. Frontend (Next.js)
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-- Runs at `http://localhost:3000`. `next.config.mjs` proxies `/api/*` to the backend.
-
----
 
 ## API
 
@@ -148,25 +111,7 @@ append them to `schemes.json`.
 
 ---
 
-## Repository layout
 
-```
-adhikar-ai/
-├── backend/
-│   ├── app/
-│   │   ├── main.py                 # FastAPI app + CORS + health
-│   │   ├── config.py               # env-driven settings (Groq, DB, CORS)
-│   │   ├── database.py  models.py  schemas.py
-│   │   ├── data/                   # schemes.json  +  localization.json  (the dataset)
-│   │   ├── agents/                 # orchestrator + extraction / eligibility / checklist
-│   │   ├── services/               # groq_client, scheme_repo
-│   │   └── routers/                # pipeline, schemes, applications
-│   └── requirements.txt  Procfile  .env.example
-└── frontend/
-    ├── app/                        # landing (page.js) + dashboard (Operator Console)
-    ├── components/                 # Brand (Ashoka Chakra), dashboard cards, icons
-    └── lib/                        # api client + i18n (EN/HI/PA)
-```
 
 > **Note on national symbols:** this project uses the **Ashoka Chakra** as a national motif.
 > The State Emblem of India (the four-lion capitol) is legally protected under the State
