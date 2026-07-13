@@ -5,6 +5,14 @@ laptop (SQLite, no keys) or on Render (PostgreSQL + Groq) with zero edits.
 """
 import os
 from functools import lru_cache
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load backend/.env explicitly (works regardless of the current working dir),
+# so DATABASE_URL / GROQ_API_KEY etc. are actually picked up locally. On hosts
+# like Render the vars come from the dashboard and this is simply a no-op.
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 
 class Settings:
