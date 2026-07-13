@@ -1,0 +1,38 @@
+{
+  "documents": {
+    "aadhaar":               { "en": "Aadhaar Card",                       "hi": "आधार कार्ड",                         "pa": "ਆਧਾਰ ਕਾਰਡ" },
+    "bank_passbook":         { "en": "Bank Passbook",                      "hi": "बैंक पासबुक",                     "pa": "ਬੈਂਕ ਪਾਸਬੁੱਕ" },
+    "land_records":          { "en": "Land Records (Khasra/Khatauni)",     "hi": "जमीन के कागज़ात (खसरा/खतौनी)", "pa": "ਜ਼ਮੀਨ ਦੇ ਰਿਕਾਰਡ" },
+    "citizenship_proof":     { "en": "Proof of Citizenship",               "hi": "नागरिकता प्रमाण",                "pa": "ਨਾਗਰਿਕਤਾ ਦਾ ਸਬੂਤ" },
+    "bpl_card":              { "en": "BPL / Ration Card",                  "hi": "बीपीएल / राशन कार्ड",          "pa": "ਬੀਪੀਐਲ / ਰਾਸ਼ਨ ਕਾਰਡ" },
+    "ration_card":           { "en": "Ration Card",                        "hi": "राशन कार्ड",                        "pa": "ਰਾਸ਼ਨ ਕਾਰਡ" },
+    "job_card":              { "en": "MGNREGA Job Card",                   "hi": "मनरेगा जॉब कार्ड",              "pa": "ਮਨਰੇਗਾ ਜਾਬ ਕਾਰਡ" },
+    "secc_details":          { "en": "SECC 2011 Details",                  "hi": "एसईसीसी 2011 विवरण",             "pa": "SECC 2011 ਵੇਰਵੇ" },
+    "age_proof":             { "en": "Age Proof",                          "hi": "आयु प्रमाण",                       "pa": "ਉਮਰ ਦਾ ਸਬੂਤ" },
+    "birth_certificate":     { "en": "Birth Certificate",                  "hi": "जन्म प्रमाण पत्र",              "pa": "ਜਨਮ ਸਰਟਿਫਿਕੇਟ" },
+    "guardian_id":           { "en": "Guardian's ID Proof",                "hi": "अभिभावक का पहचान पत्र",       "pa": "ਸਰਪ੍ਰਸਤ ਦਾ ਸ਼ਨਾਖਤੀ ਪੱਤਰ" },
+    "death_certificate":     { "en": "Death Certificate",                  "hi": "मृत्यु प्रमाण पत्र",             "pa": "ਮੌਤ ਸਰਟਿਫਿਕੇਟ" },
+    "death_certificate_spouse": { "en": "Spouse's Death Certificate",      "hi": "पति/पत्नी का मृत्यु प्रमाण पत्र", "pa": "ਜੀਵਨ ਸਾਥੀ ਦਾ ਮੌਤ ਸਰਟਿਫਿਕੇਟ" },
+    "disability_certificate":{ "en": "Disability Certificate",             "hi": "दिव्यांगता प्रमाण पत्र",          "pa": "ਅਪਾਹਜਤਾ ਸਰਟਿਫਿਕੇਟ" },
+    "caste_certificate":     { "en": "Caste Certificate",                  "hi": "जाति प्रमाण पत्र",              "pa": "ਜਾਤੀ ਸਰਟਿਫਿਕੇਟ" },
+    "income_certificate":    { "en": "Income Certificate",                 "hi": "आय प्रमाण पत्र",                "pa": "ਆਮਦਨ ਸਰਟਿਫਿਕੇਟ" },
+    "marksheet":             { "en": "Latest Marksheet",                   "hi": "नवीनतम मार्कशीट",              "pa": "ਤਾਜ਼ਾ ਮਾਰਕਸ਼ੀਟ" },
+    "fee_receipt":           { "en": "Fee Receipt",                        "hi": "फीस रसीद",                          "pa": "ਫੀਸ ਰਸੀਦ" },
+    "mcp_card":              { "en": "Mother-Child Protection Card",       "hi": "मातृ-शिशु सुरक्षा कार्ड",       "pa": "ਮਾਂ-ਬੱਚਾ ਸੁਰੱਖਿਆ ਕਾਰਡ" },
+    "jsy_mcp_card":          { "en": "JSY / MCP Card",                     "hi": "जेएसवाई / एमसीपी कार्ड",        "pa": "JSY / MCP ਕਾਰਡ" },
+    "husband_aadhaar":       { "en": "Husband's Aadhaar",                  "hi": "पति का आधार",                     "pa": "ਪਤੀ ਦਾ ਆਧਾਰ" },
+    "identity_proof":        { "en": "Identity Proof",                     "hi": "पहचान प्रमाण",                    "pa": "ਸ਼ਨਾਖਤੀ ਸਬੂਤ" },
+    "address_proof":         { "en": "Address Proof",                      "hi": "पता प्रमाण",                       "pa": "ਪਤੇ ਦਾ ਸਬੂਤ" },
+    "business_proof":        { "en": "Business Proof",                     "hi": "व्यवसाय प्रमाण",                 "pa": "ਕਾਰੋਬਾਰ ਦਾ ਸਬੂਤ" },
+    "project_report":        { "en": "Project Report",                     "hi": "परियोजना रिपोर्ट",               "pa": "ਪ੍ਰੋਜੈਕਟ ਰਿਪੋਰਟ" },
+    "sowing_certificate":    { "en": "Sowing Certificate",                 "hi": "बुआई प्रमाण पत्र",              "pa": "ਬਿਜਾਈ ਸਰਟਿਫਿਕੇਟ" },
+    "vending_certificate":   { "en": "Vending Certificate / LoR",          "hi": "वेंडिंग प्रमाण पत्र",            "pa": "ਵੈਂਡਿੰਗ ਸਰਟਿਫਿਕੇਟ" },
+    "shg_membership":        { "en": "SHG Membership Proof",               "hi": "एसएचजी सदस्यता प्रमाण",         "pa": "SHG ਮੈਂਬਰਸ਼ਿਪ ਸਬੂਤ" },
+    "mobile_number":         { "en": "Active Mobile Number",               "hi": "सक्रिय मोबाइल नंबर",             "pa": "ਚਾਲੂ ਮੋਬਾਈਲ ਨੰਬਰ" }
+  },
+  "ui": {
+    "en": { "checklist_title": "Documents to bring", "eligible": "Eligible", "likely": "Likely eligible", "not_eligible": "Not eligible", "review": "Needs review" },
+    "hi": { "checklist_title": "लाने वाले दस्तावेज़", "eligible": "पात्र", "likely": "संभावित पात्र", "not_eligible": "अपात्र", "review": "समीक्षा आवश्यक" },
+    "pa": { "checklist_title": "ਲਿਆਉਣ ਵਾਲੇ ਦਸਤਾਵੇਜ਼", "eligible": "ਯੋਗ", "likely": "ਸੰਭਾਵਤ ਯੋਗ", "not_eligible": "ਅਯੋਗ", "review": "ਸਮੀਖਿਆ ਲੋੜੀਂਦੀ" }
+  }
+}

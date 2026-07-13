@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Adhikar.AI — Government of India portal theme
+   Palette: tricolour (saffron / white / green) + Ashoka navy blue.
+   Light, official, high-contrast — modelled on india.gov.in / myScheme.
+   ============================================================ */
+@theme {
+  --color-saffron: #ff9933;
+  --color-saffron-600: #e8802a;
+  --color-india-green: #138808;
+  --color-india-green-600: #0f6e06;
+
+  --color-ashoka: #1a3a8f;      /* primary navy blue */
+  --color-ashoka-700: #12296b;
+  --color-ashoka-900: #0b1c4d;
+
+  --color-ink: #1f2a44;         /* body text */
+  --color-ink-soft: #55607a;    /* muted text */
+  --color-line: #d8dfec;        /* borders */
+  --color-surface: #ffffff;     /* cards */
+  --color-canvas: #eef2f8;      /* page background */
+  --color-canvas-2: #e3e9f3;
+
+  --font-sans: "Segoe UI", "Noto Sans", ui-sans-serif, system-ui, "Nirmala UI", sans-serif;
+}
+
+:root { color-scheme: light; }
+
+html, body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  min-height: 100%;
+}
+
+/* --- Tricolour accent strip (very top of every page) --- */
+.tricolour {
+  height: 6px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-saffron) 0 33.33%,
+    #ffffff 33.33% 66.66%,
+    var(--color-india-green) 66.66% 100%
+  );
+}
+.tricolour-line {
+  height: 3px;
+  background: linear-gradient(to right,
+    var(--color-saffron) 0 33.33%,
+    #e5e9f2 33.33% 66.66%,
+    var(--color-india-green) 66.66% 100%);
+}
+
+/* --- Cards --- */
+.gcard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(15, 28, 77, 0.04), 0 8px 24px -18px rgba(15, 28, 77, 0.25);
+}
+
+/* --- Ashoka chakra spin (subtle, for loading) --- */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 6s linear infinite; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-thumb { background: #c3ccdd; border-radius: 999px; border: 3px solid var(--color-canvas); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* --- Print: clean official checklist --- */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .gcard { box-shadow: none; border: 1px solid #bbb; }
+}

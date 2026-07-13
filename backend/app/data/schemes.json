@@ -1,0 +1,368 @@
+[
+  {
+    "id": "pm-kisan",
+    "name": "PM-KISAN Samman Nidhi",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "category": "Agriculture, Rural & Environment",
+    "description": "Income support of Rs. 6,000 per year in three equal installments to all landholding farmer families.",
+    "benefit": "Rs. 6,000/year (Rs. 2,000 x 3 installments) directly into bank account via DBT.",
+    "eligibility": {
+      "occupation": ["farmer"],
+      "land_holding_min": 0.01,
+      "notes": "Landholding farmer family. Excludes institutional landholders and income-tax payers."
+    },
+    "documents": ["aadhaar", "land_records", "bank_passbook", "citizenship_proof"],
+    "official_link": "https://pmkisan.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "pmay-g",
+    "name": "Pradhan Mantri Awas Yojana - Gramin",
+    "ministry": "Ministry of Rural Development",
+    "category": "Housing & Shelter",
+    "description": "Financial assistance to rural BPL households for construction of a pucca house with basic amenities.",
+    "benefit": "Rs. 1.20 lakh (plain areas) / Rs. 1.30 lakh (hilly/difficult areas) plus MGNREGA labour and toilet support.",
+    "eligibility": {
+      "area": ["rural"],
+      "requires_bpl": true,
+      "notes": "Houseless / households living in 0, 1 or 2 room kutcha houses as per SECC data."
+    },
+    "documents": ["aadhaar", "bank_passbook", "bpl_card", "job_card", "secc_details"],
+    "official_link": "https://pmayg.nic.in",
+    "level": "Central"
+  },
+  {
+    "id": "ayushman-bharat",
+    "name": "Ayushman Bharat - PM Jan Arogya Yojana (PM-JAY)",
+    "ministry": "Ministry of Health & Family Welfare",
+    "category": "Health & Wellness",
+    "description": "Health cover of Rs. 5 lakh per family per year for secondary and tertiary care hospitalisation.",
+    "benefit": "Rs. 5,00,000 per family per year cashless treatment at empanelled hospitals.",
+    "eligibility": {
+      "requires_bpl": true,
+      "income_max": 250000,
+      "notes": "Families identified under SECC 2011 deprivation criteria (rural) and occupational categories (urban)."
+    },
+    "documents": ["aadhaar", "ration_card", "secc_details"],
+    "official_link": "https://pmjay.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "pmuy",
+    "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "ministry": "Ministry of Petroleum & Natural Gas",
+    "category": "Women & Household",
+    "description": "Free LPG connection to women from below-poverty-line households to promote clean cooking fuel.",
+    "benefit": "Free LPG connection with deposit-free cylinder, first refill and stove support.",
+    "eligibility": {
+      "gender": ["female"],
+      "age_min": 18,
+      "requires_bpl": true,
+      "notes": "Adult woman from a BPL household without an existing LPG connection."
+    },
+    "documents": ["aadhaar", "bank_passbook", "bpl_card", "ration_card"],
+    "official_link": "https://www.pmuy.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "ssy",
+    "name": "Sukanya Samriddhi Yojana",
+    "ministry": "Ministry of Finance",
+    "category": "Girl Child & Education",
+    "description": "Small savings scheme for the girl child with high interest and tax benefits under Beti Bachao Beti Padhao.",
+    "benefit": "High fixed interest savings account maturing for the girl's education and marriage; tax-free returns.",
+    "eligibility": {
+      "gender": ["female"],
+      "age_max": 10,
+      "notes": "Account opened by guardian for a girl child below 10 years of age."
+    },
+    "documents": ["aadhaar", "birth_certificate", "guardian_id", "bank_passbook"],
+    "official_link": "https://www.nsiindia.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "ignoaps",
+    "name": "Indira Gandhi National Old Age Pension Scheme (IGNOAPS)",
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "Social Security & Pension",
+    "description": "Monthly pension to elderly persons belonging to below-poverty-line households.",
+    "benefit": "Rs. 200/month (age 60-79) and Rs. 500/month (age 80+), plus state top-up.",
+    "eligibility": {
+      "age_min": 60,
+      "requires_bpl": true,
+      "notes": "Aged 60 years or above from a BPL family."
+    },
+    "documents": ["aadhaar", "age_proof", "bpl_card", "bank_passbook"],
+    "official_link": "https://nsap.nic.in",
+    "level": "Central"
+  },
+  {
+    "id": "ignwps",
+    "name": "Indira Gandhi National Widow Pension Scheme (IGNWPS)",
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "Social Security & Pension",
+    "description": "Monthly pension to widows from below-poverty-line households.",
+    "benefit": "Rs. 300/month (age 40-79) and Rs. 500/month (age 80+), plus state top-up.",
+    "eligibility": {
+      "gender": ["female"],
+      "age_min": 40,
+      "age_max": 79,
+      "marital_status": ["widow", "widowed"],
+      "requires_bpl": true,
+      "notes": "Widow aged 40-79 years from a BPL family."
+    },
+    "documents": ["aadhaar", "age_proof", "death_certificate_spouse", "bpl_card", "bank_passbook"],
+    "official_link": "https://nsap.nic.in",
+    "level": "Central"
+  },
+  {
+    "id": "igndps",
+    "name": "Indira Gandhi National Disability Pension Scheme (IGNDPS)",
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "Social Security & Pension",
+    "description": "Monthly pension to persons with severe or multiple disabilities from BPL households.",
+    "benefit": "Rs. 300/month (age 18-79) and Rs. 500/month (age 80+), plus state top-up.",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": 79,
+      "disability_min": 80,
+      "requires_bpl": true,
+      "notes": "Persons aged 18-79 with 80% or more disability from a BPL family."
+    },
+    "documents": ["aadhaar", "age_proof", "disability_certificate", "bpl_card", "bank_passbook"],
+    "official_link": "https://nsap.nic.in",
+    "level": "Central"
+  },
+  {
+    "id": "pmmvy",
+    "name": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "ministry": "Ministry of Women & Child Development",
+    "category": "Women & Child",
+    "description": "Maternity benefit providing partial wage compensation for the first living child.",
+    "benefit": "Rs. 5,000 in installments for the first child; additional Rs. 6,000 for a second child if a girl.",
+    "eligibility": {
+      "gender": ["female"],
+      "age_min": 19,
+      "custom": ["is_pregnant"],
+      "notes": "Pregnant and lactating women aged 19+ for the first living child."
+    },
+    "documents": ["aadhaar", "bank_passbook", "mcp_card", "husband_aadhaar"],
+    "official_link": "https://wcd.nic.in",
+    "level": "Central"
+  },
+  {
+    "id": "post-matric-scholarship",
+    "name": "Post-Matric Scholarship for SC/ST/OBC Students",
+    "ministry": "Ministry of Social Justice & Empowerment",
+    "category": "Education & Learning",
+    "description": "Financial support to SC/ST/OBC students studying at post-matriculation levels.",
+    "benefit": "Maintenance allowance, reimbursement of tuition and non-refundable fees.",
+    "eligibility": {
+      "category": ["sc", "st", "obc"],
+      "is_student": true,
+      "income_max": 250000,
+      "notes": "Post-matric students from SC/ST/OBC with family income within the ceiling."
+    },
+    "documents": ["aadhaar", "caste_certificate", "income_certificate", "marksheet", "bank_passbook", "fee_receipt"],
+    "official_link": "https://scholarships.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "pre-matric-scholarship",
+    "name": "Pre-Matric Scholarship (Class 9-10)",
+    "ministry": "Ministry of Social Justice & Empowerment",
+    "category": "Education & Learning",
+    "description": "Scholarship to students of classes 9 and 10 from SC/ST/OBC and minority communities.",
+    "benefit": "Monthly maintenance allowance and annual book grant.",
+    "eligibility": {
+      "category": ["sc", "st", "obc"],
+      "is_student": true,
+      "age_max": 20,
+      "income_max": 250000,
+      "notes": "Class 9-10 students from reserved categories within the income ceiling."
+    },
+    "documents": ["aadhaar", "caste_certificate", "income_certificate", "marksheet", "bank_passbook"],
+    "official_link": "https://scholarships.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "pm-vishwakarma",
+    "name": "PM Vishwakarma Yojana",
+    "ministry": "Ministry of MSME",
+    "category": "Skill & Livelihood",
+    "description": "Support to traditional artisans and craftspeople with recognition, skill upgrade, toolkit and credit.",
+    "benefit": "Rs. 15,000 toolkit incentive, Rs. 500/day stipend during training, and collateral-free loans up to Rs. 3 lakh.",
+    "eligibility": {
+      "occupation": ["artisan", "craftsman", "carpenter", "blacksmith", "potter", "tailor", "cobbler", "goldsmith", "mason"],
+      "age_min": 18,
+      "notes": "Artisans and craftspeople engaged in one of 18 recognised traditional trades."
+    },
+    "documents": ["aadhaar", "bank_passbook", "ration_card", "mobile_number"],
+    "official_link": "https://pmvishwakarma.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "pmmy-mudra",
+    "name": "Pradhan Mantri MUDRA Yojana (PMMY)",
+    "ministry": "Ministry of Finance",
+    "category": "Business & Entrepreneurship",
+    "description": "Collateral-free micro-credit to non-corporate, non-farm small and micro enterprises.",
+    "benefit": "Loans up to Rs. 10 lakh under Shishu, Kishore and Tarun categories.",
+    "eligibility": {
+      "age_min": 18,
+      "occupation": ["shopkeeper", "self_employed", "artisan", "vendor", "small_business", "trader", "entrepreneur"],
+      "notes": "Any Indian citizen running or planning a small non-farm income-generating activity."
+    },
+    "documents": ["aadhaar", "bank_passbook", "business_proof", "identity_proof", "address_proof"],
+    "official_link": "https://www.mudra.org.in",
+    "level": "Central"
+  },
+  {
+    "id": "stand-up-india",
+    "name": "Stand-Up India Scheme",
+    "ministry": "Ministry of Finance",
+    "category": "Business & Entrepreneurship",
+    "description": "Bank loans to SC/ST and women entrepreneurs for setting up greenfield enterprises.",
+    "benefit": "Bank loan between Rs. 10 lakh and Rs. 1 crore for a new manufacturing, services or trading unit.",
+    "eligibility": {
+      "age_min": 18,
+      "category": ["sc", "st"],
+      "notes": "SC/ST or woman entrepreneur setting up a greenfield enterprise (women of any category eligible)."
+    },
+    "documents": ["aadhaar", "caste_certificate", "bank_passbook", "project_report", "address_proof"],
+    "official_link": "https://www.standupmitra.in",
+    "level": "Central"
+  },
+  {
+    "id": "pmfby",
+    "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "category": "Agriculture, Rural & Environment",
+    "description": "Comprehensive crop insurance against yield losses due to natural calamities, pests and diseases.",
+    "benefit": "Insurance payout for crop loss at low farmer premium (2% Kharif, 1.5% Rabi).",
+    "eligibility": {
+      "occupation": ["farmer"],
+      "land_holding_min": 0.01,
+      "notes": "Farmers growing notified crops, including sharecroppers and tenant farmers."
+    },
+    "documents": ["aadhaar", "land_records", "bank_passbook", "sowing_certificate"],
+    "official_link": "https://pmfby.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "kcc",
+    "name": "Kisan Credit Card (KCC)",
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "category": "Agriculture, Rural & Environment",
+    "description": "Short-term credit for cultivation and allied activities at subsidised interest.",
+    "benefit": "Flexible credit limit for crop inputs at 4% effective interest with timely repayment.",
+    "eligibility": {
+      "occupation": ["farmer", "fisherman", "dairy"],
+      "age_min": 18,
+      "notes": "Farmers, fishers and animal-husbandry households needing working capital."
+    },
+    "documents": ["aadhaar", "land_records", "bank_passbook", "identity_proof"],
+    "official_link": "https://www.myscheme.gov.in/schemes/kcc",
+    "level": "Central"
+  },
+  {
+    "id": "pm-sym",
+    "name": "PM Shram Yogi Maandhan (PM-SYM)",
+    "ministry": "Ministry of Labour & Employment",
+    "category": "Social Security & Pension",
+    "description": "Voluntary contributory pension scheme for unorganised-sector workers.",
+    "benefit": "Assured pension of Rs. 3,000/month after age 60 with matching government contribution.",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": 40,
+      "income_max": 180000,
+      "occupation": ["labourer", "unorganised_worker", "street_vendor", "domestic_worker", "rickshaw_puller", "construction_worker"],
+      "notes": "Unorganised workers aged 18-40 with monthly income up to Rs. 15,000."
+    },
+    "documents": ["aadhaar", "bank_passbook", "mobile_number"],
+    "official_link": "https://maandhan.in",
+    "level": "Central"
+  },
+  {
+    "id": "apy",
+    "name": "Atal Pension Yojana (APY)",
+    "ministry": "Ministry of Finance",
+    "category": "Social Security & Pension",
+    "description": "Guaranteed pension scheme focused on workers in the unorganised sector.",
+    "benefit": "Guaranteed monthly pension of Rs. 1,000 to Rs. 5,000 after age 60 based on contribution.",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": 40,
+      "notes": "Any citizen aged 18-40 with a savings bank account (non-taxpayer priority)."
+    },
+    "documents": ["aadhaar", "bank_passbook", "mobile_number"],
+    "official_link": "https://www.npscra.nsdl.co.in",
+    "level": "Central"
+  },
+  {
+    "id": "nrlm-shg",
+    "name": "DAY-NRLM (National Rural Livelihoods Mission)",
+    "ministry": "Ministry of Rural Development",
+    "category": "Skill & Livelihood",
+    "description": "Mobilises rural poor women into self-help groups with access to credit and livelihoods.",
+    "benefit": "Revolving fund, community investment support and bank linkage for SHG women.",
+    "eligibility": {
+      "gender": ["female"],
+      "area": ["rural"],
+      "requires_bpl": true,
+      "notes": "Rural women from poor households organised into self-help groups."
+    },
+    "documents": ["aadhaar", "bank_passbook", "shg_membership", "bpl_card"],
+    "official_link": "https://aajeevika.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "pm-svanidhi",
+    "name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+    "ministry": "Ministry of Housing & Urban Affairs",
+    "category": "Business & Entrepreneurship",
+    "description": "Working-capital micro-credit for urban street vendors to resume livelihoods.",
+    "benefit": "Collateral-free working-capital loan up to Rs. 50,000 in tranches with interest subsidy and cashback.",
+    "eligibility": {
+      "area": ["urban"],
+      "occupation": ["street_vendor", "vendor", "hawker"],
+      "notes": "Urban street vendors vending on or before 24 March 2020 with a vending certificate."
+    },
+    "documents": ["aadhaar", "bank_passbook", "vending_certificate"],
+    "official_link": "https://pmsvanidhi.mohua.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "jsy",
+    "name": "Janani Suraksha Yojana (JSY)",
+    "ministry": "Ministry of Health & Family Welfare",
+    "category": "Women & Child",
+    "description": "Safe-motherhood intervention promoting institutional delivery among poor pregnant women.",
+    "benefit": "Cash assistance of Rs. 1,400 (rural) / Rs. 1,000 (urban) for institutional delivery.",
+    "eligibility": {
+      "gender": ["female"],
+      "custom": ["is_pregnant"],
+      "requires_bpl": true,
+      "notes": "Pregnant women from BPL households opting for institutional delivery."
+    },
+    "documents": ["aadhaar", "bank_passbook", "jsy_mcp_card", "bpl_card"],
+    "official_link": "https://nhm.gov.in",
+    "level": "Central"
+  },
+  {
+    "id": "nfbs",
+    "name": "National Family Benefit Scheme (NFBS)",
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "Social Security & Pension",
+    "description": "One-time lump-sum assistance to BPL households on the death of the primary breadwinner.",
+    "benefit": "One-time assistance of Rs. 20,000 to the bereaved household.",
+    "eligibility": {
+      "requires_bpl": true,
+      "custom": ["breadwinner_deceased"],
+      "notes": "BPL family where the primary breadwinner (aged 18-59) has died."
+    },
+    "documents": ["aadhaar", "death_certificate", "bpl_card", "bank_passbook"],
+    "official_link": "https://nsap.nic.in",
+    "level": "Central"
+  }
+]
