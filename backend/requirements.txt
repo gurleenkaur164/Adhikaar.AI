@@ -1,7 +1,12 @@
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
-pydantic==2.10.4
-sqlalchemy==2.0.36
-python-dotenv==1.0.1
-groq==0.13.1
-psycopg[binary]==3.2.3
+# Minimum versions rather than exact pins. The previous exact pins (pydantic
+# ==2.10.4, sqlalchemy==2.0.36, psycopg[binary]==3.2.3) publish no wheels for
+# Python 3.14 and fail to build from source, so the backend could not be started
+# at all on a current interpreter. These floors keep the versions Render already
+# resolves valid, while letting a newer interpreter pick up a wheel.
+fastapi>=0.115.6
+uvicorn[standard]>=0.34.0
+pydantic>=2.10.4
+sqlalchemy>=2.0.36
+python-dotenv>=1.0.1
+groq>=0.13.1
+psycopg[binary]>=3.2.3

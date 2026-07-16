@@ -1,0 +1,423 @@
+[
+  {
+    "id": "readme-sarita",
+    "text": "Sarita Devi is a 45 year old widow from a village in Bihar. She is BPL.",
+    "language": "en",
+    "note": "The flagship example from the README.",
+    "expected": {
+      "name": "Sarita Devi",
+      "age": 45,
+      "gender": "female",
+      "state": "Bihar",
+      "area": "rural",
+      "is_bpl": true,
+      "marital_status": "widow"
+    },
+    "expect_null": [
+      "annual_income",
+      "disability_percent",
+      "is_pregnant"
+    ],
+    "expected_statuses": {
+      "ignwps": "eligible",
+      "pmay-g": "eligible"
+    }
+  },
+  {
+    "id": "farmer-punjab-acres",
+    "text": "Gurmeet Singh, 52, is a farmer in Ludhiana, Punjab. He owns 3 acres of land and his annual income is about 1.5 lakh.",
+    "language": "en",
+    "expected": {
+      "name": "Gurmeet Singh",
+      "age": 52,
+      "gender": "male",
+      "occupation": "farmer",
+      "state": "Punjab",
+      "annual_income": 150000,
+      "land_holding_acres": 3.0
+    },
+    "expect_null": [
+      "disability_percent",
+      "is_pregnant"
+    ],
+    "expected_statuses": {
+      "pm-kisan": "eligible"
+    }
+  },
+  {
+    "id": "monthly-income-with-age-years",
+    "text": "Sunita is 45 years old, works as a domestic worker in Delhi, and earns 6000 a month.",
+    "language": "en",
+    "note": "The word 'years' appears (from age) but the income is explicitly monthly. Annual = 6000 x 12 = 72000.",
+    "expected": {
+      "name": "Sunita",
+      "age": 45,
+      "gender": "female",
+      "occupation": "domestic_worker",
+      "state": "Delhi",
+      "annual_income": 72000
+    },
+    "expect_null": [
+      "disability_percent"
+    ]
+  },
+  {
+    "id": "small-annual-income-explicit",
+    "text": "Ramu Yadav is a 30 year old labourer. His annual income is Rs 40,000 and he holds a BPL card.",
+    "language": "en",
+    "note": "40,000 is explicitly ANNUAL and must not be multiplied by 12. Ayushman Bharat has income_max 250000, so a wrong x12 (480000) would wrongly disqualify him.",
+    "expected": {
+      "name": "Ramu Yadav",
+      "age": 30,
+      "gender": "male",
+      "occupation": "labourer",
+      "annual_income": 40000,
+      "is_bpl": true
+    },
+    "expected_statuses": {
+      "ayushman-bharat": "eligible"
+    }
+  },
+  {
+    "id": "income-per-year-under-50k",
+    "text": "Kalpana, 38, a widow, earns 45000 per year stitching clothes. She is below poverty line and lives in a village in Odisha.",
+    "language": "en",
+    "expected": {
+      "name": "Kalpana",
+      "age": 38,
+      "gender": "female",
+      "occupation": "tailor",
+      "annual_income": 45000,
+      "marital_status": "widow",
+      "is_bpl": true,
+      "area": "rural",
+      "state": "Odisha"
+    },
+    "expected_statuses": {
+      "ayushman-bharat": "eligible"
+    }
+  },
+  {
+    "id": "disability-unspecified",
+    "text": "Mohan Lal is a 42 year old disabled man from a village in Rajasthan. He has a BPL ration card.",
+    "language": "en",
+    "note": "No disability PERCENTAGE is stated. IGNDPS requires 80%. Assuming 40% makes the scheme FAIL and drop off the operator's screen entirely; leaving it null keeps it visible as 'likely' for the operator to confirm. Unknown must stay unknown.",
+    "expected": {
+      "name": "Mohan Lal",
+      "age": 42,
+      "gender": "male",
+      "area": "rural",
+      "state": "Rajasthan",
+      "is_bpl": true
+    },
+    "expect_null": [
+      "disability_percent"
+    ],
+    "expected_statuses": {
+      "igndps": "likely"
+    }
+  },
+  {
+    "id": "disability-below-threshold",
+    "text": "Prakash, 45, has 60% disability, lives in an urban area of Maharashtra and is BPL.",
+    "language": "en",
+    "note": "60% is below the IGNDPS 80% threshold, so not_eligible is the CORRECT answer. Locks in that a genuine, stated shortfall is honoured.",
+    "expected": {
+      "age": 45,
+      "disability_percent": 60,
+      "area": "urban",
+      "state": "Maharashtra",
+      "is_bpl": true,
+      "name": "Prakash"
+    },
+    "expected_statuses": {
+      "igndps": "not_eligible"
+    }
+  },
+  {
+    "id": "disability-above-threshold",
+    "text": "Ganesh, 45, has 85% disability, lives in a village in Maharashtra and is BPL.",
+    "language": "en",
+    "expected": {
+      "age": 45,
+      "disability_percent": 85,
+      "area": "rural",
+      "state": "Maharashtra",
+      "is_bpl": true,
+      "name": "Ganesh"
+    },
+    "expected_statuses": {
+      "igndps": "eligible"
+    }
+  },
+  {
+    "id": "hindi-widow",
+    "text": "सुनीता देवी 50 साल की विधवा है, वह गांव में रहती है और गरीब है।",
+    "language": "hi",
+    "expected": {
+      "age": 50,
+      "gender": "female",
+      "area": "rural",
+      "is_bpl": true,
+      "marital_status": "widow"
+    },
+    "expect_null": [
+      "disability_percent"
+    ]
+  },
+  {
+    "id": "punjabi-farmer",
+    "text": "ਜਸਵੀਰ ਸਿੰਘ 45 ਸਾਲ ਦਾ ਕਿਸਾਨ ਹੈ, ਪਿੰਡ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ।",
+    "language": "pa",
+    "expected": {
+      "age": 45,
+      "occupation": "farmer",
+      "area": "rural"
+    },
+    "expect_null": [
+      "disability_percent",
+      "is_pregnant"
+    ]
+  },
+  {
+    "id": "mixed-hinglish-vendor",
+    "text": "Raju bhai ek street vendor hai, umar 35 saal, sheher mein rehta hai, income 9000 per month.",
+    "language": "en",
+    "expected": {
+      "age": 35,
+      "occupation": "street_vendor",
+      "area": "urban",
+      "annual_income": 108000
+    },
+    "expected_statuses": {
+      "pm-svanidhi": "eligible"
+    }
+  },
+  {
+    "id": "pregnant-woman",
+    "text": "Anita is a 26 year old pregnant woman from a village in Uttar Pradesh. She is from a BPL family.",
+    "language": "en",
+    "expected": {
+      "name": "Anita",
+      "age": 26,
+      "gender": "female",
+      "is_pregnant": true,
+      "area": "rural",
+      "state": "Uttar Pradesh",
+      "is_bpl": true
+    },
+    "expect_null": [
+      "disability_percent"
+    ]
+  },
+  {
+    "id": "sc-student",
+    "text": "Deepak Kumar is a 19 year old SC student in college. His family income is 1 lakh per year.",
+    "language": "en",
+    "expected": {
+      "name": "Deepak Kumar",
+      "age": 19,
+      "gender": "male",
+      "category": "sc",
+      "is_student": true,
+      "annual_income": 100000
+    },
+    "expected_statuses": {
+      "post-matric-scholarship": "eligible"
+    }
+  },
+  {
+    "id": "artisan-vishwakarma",
+    "text": "Shyam Lal is a 40 year old carpenter from a village in Madhya Pradesh.",
+    "language": "en",
+    "expected": {
+      "name": "Shyam Lal",
+      "age": 40,
+      "gender": "male",
+      "occupation": "artisan",
+      "area": "rural",
+      "state": "Madhya Pradesh"
+    },
+    "expected_statuses": {
+      "pm-vishwakarma": "eligible"
+    }
+  },
+  {
+    "id": "elderly-pension",
+    "text": "Bhagwan Das, aged 68, lives in a village in Haryana and is below the poverty line.",
+    "language": "en",
+    "expected": {
+      "age": 68,
+      "gender": "male",
+      "area": "rural",
+      "state": "Haryana",
+      "is_bpl": true,
+      "name": "Bhagwan Das"
+    },
+    "expected_statuses": {
+      "ignoaps": "eligible"
+    }
+  },
+  {
+    "id": "young-adult-no-pension",
+    "text": "Priya is a 22 year old woman working as a teacher in a town in Kerala.",
+    "language": "en",
+    "note": "The README explicitly promises a 22-year-old is NOT told she is eligible for a pension scheme (Atal Pension, age 18-40).",
+    "expected": {
+      "age": 22,
+      "gender": "female",
+      "occupation": "teacher",
+      "area": "urban",
+      "state": "Kerala"
+    },
+    "expect_null": [
+      "is_bpl",
+      "disability_percent"
+    ],
+    "expected_statuses": {
+      "apy": "review"
+    }
+  },
+  {
+    "id": "income-lakh-per-annum",
+    "text": "Ravi Sharma, 33, runs a kirana shop in Jaipur, Rajasthan. Annual income 3 lakh.",
+    "language": "en",
+    "expected": {
+      "name": "Ravi Sharma",
+      "age": 33,
+      "gender": "male",
+      "occupation": "shopkeeper",
+      "state": "Rajasthan",
+      "annual_income": 300000
+    }
+  },
+  {
+    "id": "breadwinner-deceased",
+    "text": "Kamla Devi, 35, from a BPL family in a village in Jharkhand. Her husband was the earning member and he died last year.",
+    "language": "en",
+    "expected": {
+      "age": 35,
+      "gender": "female",
+      "is_bpl": true,
+      "area": "rural",
+      "state": "Jharkhand",
+      "name": "Kamla Devi"
+    },
+    "expected_flags": [
+      "breadwinner_deceased"
+    ],
+    "expected_statuses": {
+      "nfbs": "eligible"
+    }
+  },
+  {
+    "id": "st-tribal-woman",
+    "text": "Lakshmi is a 29 year old tribal woman from a village in Chhattisgarh, BPL household.",
+    "language": "en",
+    "expected": {
+      "age": 29,
+      "gender": "female",
+      "category": "st",
+      "area": "rural",
+      "state": "Chhattisgarh",
+      "is_bpl": true,
+      "name": "Lakshmi"
+    },
+    "expected_statuses": {
+      "nrlm-shg": "eligible"
+    }
+  },
+  {
+    "id": "fisherman-kerala",
+    "text": "Joseph, 47, is a fisherman living in a coastal village in Kerala. He earns around 12000 monthly.",
+    "language": "en",
+    "expected": {
+      "age": 47,
+      "gender": "male",
+      "occupation": "fisherman",
+      "area": "rural",
+      "state": "Kerala",
+      "annual_income": 144000,
+      "name": "Joseph"
+    }
+  },
+  {
+    "id": "no-facts-at-all",
+    "text": "A person came to the centre today asking about government schemes.",
+    "language": "en",
+    "note": "Almost nothing is stated. A well-behaved extractor should return an almost-empty profile and LOW confidence, not invent fields.",
+    "expected": {},
+    "expect_null": [
+      "age",
+      "gender",
+      "annual_income",
+      "occupation",
+      "category",
+      "area",
+      "is_bpl",
+      "disability_percent",
+      "marital_status",
+      "land_holding_acres",
+      "is_pregnant",
+      "name"
+    ],
+    "max_confidence": 0.3
+  },
+  {
+    "id": "girl-child-ssy",
+    "text": "Rajesh wants to open a savings account for his daughter Meena who is 7 years old.",
+    "language": "en",
+    "note": "The SUBJECT of the profile is the girl child, age 7, female. Tests that the extractor picks the right person.",
+    "expected": {
+      "age": 7,
+      "gender": "female",
+      "name": "Meena"
+    },
+    "expect_null": [
+      "is_bpl",
+      "disability_percent"
+    ]
+  },
+  {
+    "id": "urban-labourer-pmsym",
+    "text": "Sanjay Kumar, 38, is a daily wage labourer in Kanpur city, Uttar Pradesh, earning about 10000 rupees per month.",
+    "language": "en",
+    "expected": {
+      "name": "Sanjay Kumar",
+      "age": 38,
+      "gender": "male",
+      "occupation": "labourer",
+      "area": "urban",
+      "state": "Uttar Pradesh",
+      "annual_income": 120000
+    },
+    "expected_statuses": {
+      "pm-sym": "eligible"
+    }
+  },
+  {
+    "id": "obc-rickshaw",
+    "text": "Suresh is an OBC e-rickshaw driver, 41 years old, living in a town in West Bengal.",
+    "language": "en",
+    "expected": {
+      "age": 41,
+      "gender": "male",
+      "occupation": "rickshaw_puller",
+      "category": "obc",
+      "area": "urban",
+      "state": "West Bengal",
+      "name": "Suresh"
+    }
+  },
+  {
+    "id": "hindi-farmer-income",
+    "text": "रमेश कुमार एक किसान है, उसकी उम्र 55 साल है और उसकी आय 80000 प्रति वर्ष है। वह गांव में रहता है।",
+    "language": "hi",
+    "expected": {
+      "age": 55,
+      "occupation": "farmer",
+      "annual_income": 80000,
+      "area": "rural"
+    }
+  }
+]

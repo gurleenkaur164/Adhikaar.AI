@@ -60,6 +60,47 @@ pension scheme.)
 
 ---
 
+## Accuracy — how the AI layer is measured
+
+Extraction accuracy is the whole ball game: the matcher is deterministic, so a
+field the extractor gets wrong is an entitlement the citizen silently loses. So
+the AI layer is scored against a hand-labeled set rather than eyeballed
+(`backend/tests/eval/cases.json` — 25 operator descriptions in English, Hindi,
+Punjabi and Hinglish, labeled with the profile a careful human would extract and
+the scheme statuses that should follow).
+
+```bash
+cd backend
+pip install -r requirements.txt -r requirements-dev.txt
+python -m tests.eval.runner        # scored report, rule-based path (no API key needed)
+python -m tests.eval.runner --ai   # same set through Groq/Llama 3
+pytest                             # unit + regression tests, incl. an accuracy floor
+```
+
+Four outcomes are tracked per field, because they are not equally bad — a
+**missed** field is surfaced to the operator as "missing", whereas a **wrong** or
+**hallucinated** one silently changes which schemes a citizen is offered:
+
+| | rule-based path, before | after |
+|---|---|---|
+| Field accuracy | 86.3% | **95.9%** |
+| Eligibility status accuracy | 81.2% | **100%** |
+| Wrong (silently misleading) | 2 | **0** |
+| Hallucinated (invented a fact) | 1 | **0** |
+
+The remaining misses all require inferring gender from a person's *name*
+("Sunita" → female). That is deliberately **not** done with a lookup table — name
+lists misgender real people — and is exactly the work the LLM layer exists to do.
+
+**The design rule the numbers enforce: an unknown fact must stay unknown.** A
+guess that looks helpful can quietly deny a scheme. The clearest case: IGNDPS
+requires **80%** disability, so defaulting an unquantified "he is disabled" to
+40% made the rule *fail*, marked the pension `not_eligible`, and dropped it off
+the operator's screen entirely — where `null` keeps it visible as `likely` for
+the operator to confirm. `pytest` pins that behaviour so it cannot come back.
+
+---
+
 
 
 ## API

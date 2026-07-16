@@ -1,0 +1,7 @@
+# Development / test dependencies. Not installed on Render.
+#   pip install -r requirements.txt -r requirements-dev.txt
+#   pytest                        # unit + regression tests
+#   python -m tests.eval.runner   # scored accuracy report
+-r requirements.txt
+pytest>=8.0
+httpx>=0.27          # fastapi.testclient
