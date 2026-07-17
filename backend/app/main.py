@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .database import Base, engine
+from .agents import discovery_agent
 from .routers import applications, pipeline, schemes
 from .services.scheme_repo import load_schemes
 
@@ -37,7 +38,11 @@ def health():
         "ai_enabled": settings.ai_enabled,
         "ai_model": settings.GROQ_MODEL if settings.ai_enabled else None,
         "extraction_mode": "groq" if settings.ai_enabled else "rule-based",
+        # Reported separately, never summed. A single "1,988 schemes" would
+        # imply the service can rule on all of them; it can rule on 22.
         "schemes_loaded": len(load_schemes()),
+        "schemes_verified": len(load_schemes()),
+        "schemes_discovery": len(discovery_agent.load_discovery()),
     }
 
 

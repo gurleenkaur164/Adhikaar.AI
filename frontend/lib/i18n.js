@@ -30,6 +30,17 @@ export const t = {
     missing: "Add these details to sharpen matches",
     empty: "Enter a citizen's details to begin.",
     reset: "New citizen",
+    // Tier 2. The wording must never imply a verdict — these are leads.
+    discovery: "Other schemes worth checking",
+    discoveryWarn:
+      "NOT checked against eligibility rules. These are search results, not decisions. Read the official criteria before advising the citizen.",
+    notChecked: "Not checked",
+    whySurfaced: "Surfaced because the citizen is",
+    officialCriteria: "Official eligibility text",
+    asOf: "Text captured",
+    verifyAt: "Verify on the official portal",
+    discoveryEmpty:
+      "No other schemes matched the details given. Add more details about the citizen to widen the search — this does not mean none exist.",
   },
   hi: {
     tagline: "सरकारी योजना निष्कर्षण के लिए एजेंटिक सहायक",
@@ -54,6 +65,16 @@ export const t = {
     missing: "बेहतर मिलान के लिए ये विवरण जोड़ें",
     empty: "शुरू करने के लिए नागरिक का विवरण दर्ज करें।",
     reset: "नया नागरिक",
+    discovery: "जाँचने योग्य अन्य योजनाएँ",
+    discoveryWarn:
+      "पात्रता नियमों से जाँच नहीं की गई। ये केवल खोज परिणाम हैं, निर्णय नहीं। नागरिक को सलाह देने से पहले आधिकारिक मानदंड पढ़ें।",
+    notChecked: "जाँच नहीं की गई",
+    whySurfaced: "इसलिए दिखाया गया क्योंकि नागरिक है",
+    officialCriteria: "आधिकारिक पात्रता विवरण",
+    asOf: "विवरण दिनांक",
+    verifyAt: "आधिकारिक पोर्टल पर सत्यापित करें",
+    discoveryEmpty:
+      "दिए गए विवरण से कोई अन्य योजना नहीं मिली। खोज बढ़ाने के लिए नागरिक के बारे में और विवरण जोड़ें — इसका अर्थ यह नहीं कि कोई योजना नहीं है।",
   },
   pa: {
     tagline: "ਸਰਕਾਰੀ ਸਕੀਮ ਕੱਢਣ ਲਈ ਏਜੰਟਿਕ ਸਹਾਇਕ",
@@ -78,6 +99,16 @@ export const t = {
     missing: "ਬਿਹਤਰ ਮਿਲਾਨ ਲਈ ਇਹ ਵੇਰਵੇ ਸ਼ਾਮਲ ਕਰੋ",
     empty: "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਨਾਗਰਿਕ ਦਾ ਵੇਰਵਾ ਦਰਜ ਕਰੋ।",
     reset: "ਨਵਾਂ ਨਾਗਰਿਕ",
+    discovery: "ਜਾਂਚਣ ਯੋਗ ਹੋਰ ਸਕੀਮਾਂ",
+    discoveryWarn:
+      "ਯੋਗਤਾ ਨਿਯਮਾਂ ਨਾਲ ਜਾਂਚ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਇਹ ਸਿਰਫ਼ ਖੋਜ ਨਤੀਜੇ ਹਨ, ਫ਼ੈਸਲੇ ਨਹੀਂ। ਨਾਗਰਿਕ ਨੂੰ ਸਲਾਹ ਦੇਣ ਤੋਂ ਪਹਿਲਾਂ ਅਧਿਕਾਰਤ ਮਾਪਦੰਡ ਪੜ੍ਹੋ।",
+    notChecked: "ਜਾਂਚ ਨਹੀਂ ਕੀਤੀ",
+    whySurfaced: "ਇਸ ਲਈ ਦਿਖਾਇਆ ਕਿਉਂਕਿ ਨਾਗਰਿਕ ਹੈ",
+    officialCriteria: "ਅਧਿਕਾਰਤ ਯੋਗਤਾ ਵੇਰਵਾ",
+    asOf: "ਵੇਰਵਾ ਮਿਤੀ",
+    verifyAt: "ਅਧਿਕਾਰਤ ਪੋਰਟਲ 'ਤੇ ਪੁਸ਼ਟੀ ਕਰੋ",
+    discoveryEmpty:
+      "ਦਿੱਤੇ ਵੇਰਵਿਆਂ ਨਾਲ ਕੋਈ ਹੋਰ ਸਕੀਮ ਨਹੀਂ ਮਿਲੀ। ਖੋਜ ਵਧਾਉਣ ਲਈ ਨਾਗਰਿਕ ਬਾਰੇ ਹੋਰ ਵੇਰਵੇ ਸ਼ਾਮਲ ਕਰੋ — ਇਸਦਾ ਮਤਲਬ ਇਹ ਨਹੀਂ ਕਿ ਕੋਈ ਸਕੀਮ ਨਹੀਂ ਹੈ।",
   },
 };
 

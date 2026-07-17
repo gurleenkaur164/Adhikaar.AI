@@ -6,10 +6,18 @@
    Light, official, high-contrast — modelled on india.gov.in / myScheme.
    ============================================================ */
 @theme {
-  --color-saffron: #ff9933;
-  --color-saffron-600: #e8802a;
+  --color-saffron: #ff9933;     /* decorative only — 2.13:1 on white */
+  --color-saffron-600: #e8802a; /* decorative only — 2.78:1 on white */
+  /* Text-safe saffron. Same 30deg hue, dark enough to actually be read:
+     5.07:1 on white and 4.51:1 on --color-canvas, so it clears WCAG AA (4.5:1)
+     on both surfaces. saffron/saffron-600 FAIL AA as text and must stay on
+     backgrounds, borders and the tricolour strip. This matters more here than
+     on a typical site: the "Likely / Review" status and the missing-fields
+     warning are carried in this colour, and they are read off cheap screens in
+     variable light by operators who are advising someone about money. */
+  --color-saffron-700: #ad5700;
   --color-india-green: #138808;
-  --color-india-green-600: #0f6e06;
+  --color-india-green-600: #0f6e06; /* 6.45:1 on white — text-safe */
 
   --color-ashoka: #1a3a8f;      /* primary navy blue */
   --color-ashoka-700: #12296b;

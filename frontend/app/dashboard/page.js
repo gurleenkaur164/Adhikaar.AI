@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo, GovStrip, Chakra } from "@/components/Brand";
 import { Icon } from "@/components/Icons";
-import { ProfileCard, AgentTrace, SchemeCard, Checklist } from "@/components/dashboard";
+import { ProfileCard, AgentTrace, SchemeCard, Checklist, DiscoverySection } from "@/components/dashboard";
 import { api } from "@/lib/api";
 import { LANGS, t, EXAMPLES } from "@/lib/i18n";
 
@@ -83,8 +83,16 @@ export default function Dashboard() {
             {health && (
               <span className="hidden items-center gap-2 rounded-md border border-line bg-canvas px-3 py-1.5 text-xs font-medium text-ink-soft sm:inline-flex">
                 <span className={`h-1.5 w-1.5 rounded-full ${health.status === "ok" ? "bg-india-green" : "bg-red-500"}`} />
+                {/* Two counts, never one total. "1,988 schemes" would imply
+                    the service can rule on all of them — it can rule on 22. */}
                 {health.status === "ok"
-                  ? `${health.extraction_mode === "groq" ? "Llama 3" : "Rule-based"} · ${health.schemes_loaded} schemes`
+                  ? `${health.extraction_mode === "groq" ? "Llama 3" : "Rule-based"} · ${
+                      health.schemes_verified ?? health.schemes_loaded
+                    } verified${
+                      health.schemes_discovery
+                        ? ` · ${health.schemes_discovery.toLocaleString("en-IN")} to search`
+                        : ""
+                    }`
                   : "API offline"}
               </span>
             )}
@@ -218,7 +226,7 @@ export default function Dashboard() {
 
                 {likely.length > 0 && (
                   <section>
-                    <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-saffron-600">
+                    <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-saffron-700">
                       {tr.likely} · {likely.length}
                     </h3>
                     <div className="grid gap-4 sm:grid-cols-2">
@@ -228,6 +236,13 @@ export default function Dashboard() {
                     </div>
                   </section>
                 )}
+
+                {/* Tier 2. Placed after every verified result and after the
+                    checklist, so leads can never be mistaken for the decisions
+                    above them. DiscoverySection carries its own warning and is
+                    no-print — the printed checklist is what the citizen acts
+                    on, and only verified schemes belong on it. */}
+                <DiscoverySection discovery={result.discovery} tr={tr} />
 
                 <AgentTrace trace={result.trace} tr={tr} />
 

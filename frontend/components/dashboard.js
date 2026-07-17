@@ -1,17 +1,32 @@
 "use client";
 import { Icon } from "./Icons";
 
+// The verdict palette. Green/saffron/red mean "the rule base decided
+// something" and are reserved for Tier 1. Tier 2 must never borrow them.
 const STATUS_STYLES = {
   eligible: "border-india-green/40 bg-india-green/10 text-india-green-600",
-  likely: "border-saffron/50 bg-saffron/10 text-saffron-600",
-  review: "border-saffron/50 bg-saffron/10 text-saffron-600",
+  likely: "border-saffron/50 bg-saffron/10 text-saffron-700",
+  review: "border-saffron/50 bg-saffron/10 text-saffron-700",
   not_eligible: "border-red-300 bg-red-50 text-red-600",
 };
 const STATUS_LABEL = { eligible: "Eligible", likely: "Likely", review: "Review", not_eligible: "Not eligible" };
 
 export function StatusBadge({ status }) {
+  // No silent fallback. This used to be `STATUS_STYLES[status] ||
+  // STATUS_STYLES.review`, which painted an unverified Tier-2 lead in the same
+  // saffron as a Tier-1 "Review" verdict — i.e. the UI quietly presented "we
+  // have not checked this" as "the system assessed this". An unknown status is
+  // a bug, and should look like one rather than borrow a verdict colour.
+  const style = STATUS_STYLES[status];
+  if (!style) {
+    return (
+      <span className="shrink-0 rounded-full border border-dashed border-ink-soft/50 px-2.5 py-0.5 text-xs font-semibold text-ink-soft">
+        {STATUS_LABEL[status] || status}
+      </span>
+    );
+  }
   return (
-    <span className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[status] || STATUS_STYLES.review}`}>
+    <span className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-semibold ${style}`}>
       {STATUS_LABEL[status] || status}
     </span>
   );
@@ -58,7 +73,7 @@ export function ProfileCard({ profile, summary, tr }) {
           {entries.length === 0 && <p className="text-sm text-ink-soft">No details detected yet.</p>}
         </div>
         {summary.missing_fields?.length > 0 && (
-          <p className="mt-4 rounded-md border border-saffron/30 bg-saffron/5 px-3 py-2 text-xs text-saffron-600">
+          <p className="mt-4 rounded-md border border-saffron/30 bg-saffron/5 px-3 py-2 text-xs text-saffron-700">
             {tr.missing}: {summary.missing_fields.map((f) => FIELD_LABELS[f] || f).join(", ")}
           </p>
         )}
@@ -118,7 +133,7 @@ export function SchemeCard({ scheme, tr }) {
               </span>
             ))}
             {scheme.failed_criteria?.filter((c) => c.includes("unconfirmed")).map((c, i) => (
-              <span key={`u${i}`} className="rounded-md bg-saffron/10 px-2 py-0.5 text-xs text-saffron-600">
+              <span key={`u${i}`} className="rounded-md bg-saffron/10 px-2 py-0.5 text-xs text-saffron-700">
                 {c}
               </span>
             ))}
@@ -140,6 +155,112 @@ export function SchemeCard({ scheme, tr }) {
       >
         Official portal <Icon.Arrow className="h-3.5 w-3.5" />
       </a>
+    </div>
+  );
+}
+
+/**
+ * Tier-2 discovery card.
+ *
+ * Deliberately does NOT reuse SchemeCard. SchemeCard reads `category`,
+ * `benefit`, `matched_criteria` and `documents` — none of which a discovery
+ * record has, so it would render `undefined` next to a verdict-coloured badge.
+ * More importantly the two things ARE different and must not look alike:
+ * a SchemeCard is a decision, this is a lead.
+ *
+ * Everything here is visual anti-authority: dashed border, no verdict colour,
+ * muted, and the government's own words shown verbatim rather than summarised.
+ * The operator reads the criteria and decides — the software does not.
+ */
+export function DiscoveryCard({ scheme, tr }) {
+  return (
+    <div className="rounded-lg border border-dashed border-line bg-canvas/40 p-4">
+      <div className="flex items-start justify-between gap-3">
+        <h4 className="text-sm font-semibold leading-snug text-ink">{scheme.name}</h4>
+        <span className="shrink-0 rounded-full border border-dashed border-ink-soft/40 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-ink-soft">
+          {tr.notChecked}
+        </span>
+      </div>
+
+      {scheme.matched_terms?.length > 0 && (
+        <p className="mt-2 text-xs text-ink-soft">
+          {tr.whySurfaced}{" "}
+          {scheme.matched_terms.map((t, i) => (
+            <span key={t}>
+              <span className="font-medium text-ink">{t}</span>
+              {i < scheme.matched_terms.length - 1 ? ", " : ""}
+            </span>
+          ))}
+        </p>
+      )}
+
+      {/* Verbatim government text. Collapsed by default so the card stays
+          scannable, but never summarised or paraphrased. */}
+      <details className="mt-3 group">
+        <summary className="cursor-pointer list-none text-xs font-semibold text-ashoka hover:underline">
+          {tr.officialCriteria} ▾
+        </summary>
+        <p className="mt-2 max-h-44 overflow-y-auto whitespace-pre-line rounded border border-line bg-white p-3 text-xs leading-relaxed text-ink-soft">
+          {scheme.eligibility_text}
+        </p>
+      </details>
+
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+        <span className="text-[11px] text-ink-soft">
+          {tr.asOf} {scheme.snapshot}
+        </span>
+        <a
+          href={scheme.official_link}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-ashoka hover:underline"
+        >
+          {tr.verifyAt} <Icon.Arrow className="h-3.5 w-3.5" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The warning is part of the component, not the page, so Tier-2 results can
+ * never be rendered without it.
+ */
+export function DiscoverySection({ discovery, tr }) {
+  // Returning null on empty hides the fact that a search ran at all, which
+  // reads as "there is nothing else" rather than "we found nothing to show
+  // you". For an operator advising a citizen those are very different claims.
+  if (!discovery) return null;
+
+  if (discovery.length === 0) {
+    return (
+      <div className="gcard p-5 no-print">
+        <div className="mb-1 flex items-center gap-2">
+          <Icon.Doc className="h-5 w-5 text-ink-soft" />
+          <h3 className="font-semibold text-ink">{tr.discovery}</h3>
+        </div>
+        <p className="text-sm text-ink-soft">{tr.discoveryEmpty}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="gcard p-5 animate-rise no-print">
+      <div className="mb-1 flex items-center gap-2">
+        <Icon.Doc className="h-5 w-5 text-ink-soft" />
+        <h3 className="font-semibold text-ink">{tr.discovery}</h3>
+        <span className="ml-auto rounded-md border border-line bg-canvas px-2 py-0.5 text-xs font-medium text-ink-soft">
+          {discovery.length}
+        </span>
+      </div>
+      <p className="mb-4 rounded-md border border-dashed border-ink-soft/30 bg-canvas px-3 py-2 text-xs leading-relaxed text-ink-soft">
+        {tr.discoveryWarn}
+      </p>
+      <div className="space-y-3">
+        {discovery.map((s) => (
+          <DiscoveryCard key={s.scheme_id} scheme={s} tr={tr} />
+        ))}
+      </div>
     </div>
   );
 }

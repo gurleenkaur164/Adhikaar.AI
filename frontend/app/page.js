@@ -11,9 +11,9 @@ const FEATURES = [
   },
   {
     icon: Icon.Bolt,
-    title: "Instant Scheme Matching",
-    hindi: "तुरंत योजना मिलान",
-    body: "The profile is cross-referenced against a deterministic rule base of Central & State welfare schemes for accurate, policy-compliant matches.",
+    title: "Two-Tier Scheme Matching",
+    hindi: "दो-स्तरीय योजना मिलान",
+    body: "22 Central schemes carry hand-verified rules, so the system can state eligibility. A further 1,966 are searchable but never asserted — you get the government's own criteria and a link, and you decide.",
   },
   {
     icon: Icon.Doc,
@@ -29,10 +29,14 @@ const FEATURES = [
   },
 ];
 
+// Every number here is either an external fact or something this repo
+// measures. "10x faster processing" used to sit in this list; nothing
+// measured it, so it is gone. "1,000+ schemes" was also ambiguous — it
+// described how many schemes exist in India, but read as a product claim.
 const STATS = [
-  { value: "5.5 Lakh", label: "Common Service Centres" },
-  { value: "1,000+", label: "Central & State schemes" },
-  { value: "10x", label: "Faster processing" },
+  { value: "5.5 Lakh", label: "Common Service Centres in India" },
+  { value: "22 + 1,966", label: "Rule-verified + searchable schemes" },
+  { value: "0", label: "Hallucinated fields in 170 checks" },
   { value: "₹0", label: "Operational cost" },
 ];
 
@@ -64,7 +68,7 @@ export default function Landing() {
             </div>
             <h1 className="text-4xl font-extrabold leading-[1.12] tracking-tight text-ashoka-900 sm:text-5xl">
               Delivering welfare schemes to every citizen,{" "}
-              <span className="text-saffron-600">at the last mile.</span>
+              <span className="text-saffron-700">at the last mile.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-ink-soft">
               Adhikar.AI is an agentic copilot for Common Service Centre operators. It reads a
@@ -140,8 +144,8 @@ export default function Landing() {
             One operator input. A full application, prepared.
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
-            Five agents — Intake, Extraction, Eligibility, Checklist and Synthesis — run in a
-            single, traceable pipeline.
+            Six agents — Intake, Extraction, Eligibility, Discovery, Checklist and Synthesis —
+            run in a single, traceable pipeline.
           </p>
           <div className="mt-9 grid gap-5 sm:grid-cols-2">
             {FEATURES.map((f) => (
@@ -150,7 +154,7 @@ export default function Landing() {
                   <f.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-ashoka-900">{f.title}</h3>
-                <div className="text-xs font-medium text-saffron-600">{f.hindi}</div>
+                <div className="text-xs font-medium text-saffron-700">{f.hindi}</div>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{f.body}</p>
               </div>
             ))}
@@ -160,13 +164,20 @@ export default function Landing() {
         {/* Pipeline strip */}
         <section className="mt-14 gcard p-7">
           <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
-            {["Intake", "Extraction (Llama 3)", "Eligibility (Rule base)", "Checklist (Localized)", "Synthesis"].map(
+            {[
+              "Intake",
+              "Extraction (Llama 3)",
+              "Eligibility (Rule base)",
+              "Discovery (Search)",
+              "Checklist (Localized)",
+              "Synthesis",
+            ].map(
               (step, i, arr) => (
                 <span key={step} className="flex items-center gap-3">
                   <span className="rounded-md border border-line bg-canvas px-3 py-2 font-medium text-ashoka">
                     {step}
                   </span>
-                  {i < arr.length - 1 && <Icon.Arrow className="h-4 w-4 text-saffron-600" />}
+                  {i < arr.length - 1 && <Icon.Arrow className="h-4 w-4 text-saffron-700" />}
                 </span>
               )
             )}
